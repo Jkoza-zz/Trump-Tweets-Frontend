@@ -1,26 +1,29 @@
 import Banner from './Banner';
 import MainView from './MainView';
 import React from 'react';
-import Tags from './Tags';
 import agent from '../../agent';
+import Tags from './Tags';
 import { connect } from 'react-redux';
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
-  APPLY_TAG_FILTER
+  APPLY_TAG_FILTER,
+  RANDOM_TWEET
 } from '../../constants/actionTypes';
 
 const Promise = global.Promise;
 
 const mapStateToProps = state => ({
-  ...state.home,
-  appName: state.common.appName,
-  token: state.common.token
+  ...state
 });
 
 const mapDispatchToProps = dispatch => ({
   onClickTag: (tag, pager, payload) =>
     dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
+  onClickRandom: (pager, payload) =>
+    dispatch({ type: RANDOM_TWEET, pager, payload }),
+  onSearch: (query, pager, payload) =>
+    dispatch({ type: RANDOM_TWEET, query, pager, payload }),
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () =>
@@ -30,11 +33,9 @@ const mapDispatchToProps = dispatch => ({
 class Home extends React.Component {
   componentWillMount() {
     const tab = this.props.token ? 'feed' : 'all';
-    const articlesPromise = this.props.token ?
-      agent.Articles.feed :
-      agent.Articles.all;
+    const tweetsPromise = agent.tweets.all;
 
-    this.props.onLoad(tab, articlesPromise, Promise.all([agent.Tags.getAll(), articlesPromise()]));
+    this.props.onLoad(tab, tweetsPromise, Promise.all(['', tweetsPromise()]));
   }
 
   componentWillUnmount() {
@@ -45,19 +46,18 @@ class Home extends React.Component {
     return (
       <div className="home-page">
 
-        <Banner token={this.props.token} appName={'Wise Words of Trump'} />
+        <Banner appName={'Wise Words of Trump'} randomClick={this.props.onClickRandom} search={this.props.onSearch}/>
 
         <div className="container page">
           <div className="row">
             <MainView />
-
             <div className="col-md-3">
               <div className="sidebar">
 
-                <p>Popular Tags</p>
+                <p>Popular Searches</p>
 
                 <Tags
-                  tags={this.props.tags}
+                  tags={['Fake News', 'CNN', 'NBC', 'Russia', 'Mexico', 'Obama', 'Obamacare', 'deals', 'NFL', 'racist']}
                   onClickTag={this.props.onClickTag} />
 
               </div>
