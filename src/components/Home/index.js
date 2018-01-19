@@ -46,7 +46,7 @@ class Home extends React.Component {
     return (
       <div className="home-page">
 
-        <Banner appName={'Wise Words of Trump'} randomClick={this.props.onClickRandom} search={this.props.onSearch}/>
+        <Banner appName={'Daily Dose of Trump'} randomClick={this.props.onClickRandom} search={this.props.onSearch}/>
 
         <div className="container page">
           <div className="row">
@@ -57,7 +57,7 @@ class Home extends React.Component {
                 <p>Popular Searches</p>
 
                 <Tags
-                  tags={['Fake News', 'CNN', 'NBC', 'Russia', 'Mexico', 'Obama', 'Obamacare', 'deals', 'NFL', 'racist']}
+                  tags={['Fake News', 'CNN', 'NBC', 'Russia', 'Mexico', 'Obama', 'Obamacare', 'deals', 'NFL', 'New York Times', 'MAGA']}
                   onClickTag={this.props.onClickTag} />
 
               </div>
