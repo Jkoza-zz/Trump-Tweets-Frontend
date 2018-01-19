@@ -6,7 +6,7 @@ import { Tweet } from 'react-twitter-widgets'
 
 const tweetPreview = props => {
 	return (
-		<Tweet tweetId={props.tweet.post_id} 
+		<Tweet tweetId={props.tweet.id_str} 
     	/>
 	);
 }
