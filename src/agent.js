@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'http://localhost:8080';
+const API_ROOT = 'https://vast-beyond-44689.herokuapp.com';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
