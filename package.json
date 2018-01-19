@@ -1,12 +1,7 @@
 {
-  "name": "trump-front",
-  "version": "1.0.0",
-  "description": "front-end for trump tweets",
-  "main": "index.js",
-  "devDependencies": {
-    "cross-env": "^4.0.0",
-    "react-scripts": "0.9.5"
-  },
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "cross-env": "^4.0.0",
     "react-scripts": "0.9.5",
@@ -27,20 +22,11 @@
     "superagent": "^2.3.0",
     "superagent-promise": "^1.1.0"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "react-scripts build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cross-env PORT=4100 react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jkoza/Trump-Tweets-Frontend.git"
-  },
-  "author": "Joshua Koza",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Jkoza/Trump-Tweets-Frontend/issues"
-  },
-  "homepage": "https://github.com/Jkoza/Trump-Tweets-Frontend#readme"
+  }
 }
