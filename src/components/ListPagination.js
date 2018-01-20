@@ -8,50 +8,26 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: SET_PAGE, page, payload })
 });
 
+
 const ListPagination = props => {
-  if (props.tweetsCount <= 10) {
-    return null;
-  }
 
-  const range = [];
-  for (let i = 0; i < Math.ceil(props.tweetsCount / 100); ++i) {
-    range.push(i);
-  }
+  const increase = page => {
+      let nextPage = props.currentPage + 1;
+      props.onSetPage(nextPage, props.pager(nextPage));
+  };
 
-  const setPage = page => {
-    if(props.pager) {
-      props.onSetPage(page, props.pager(page));
-    }else {
-      props.onSetPage(page, agent.tweets.all(page))
+  const decrease = page => {
+    if(props.currentPage > 0){
+      let prevPage = props.currentPage - 1;
+      props.onSetPage(prevPage, props.pager(prevPage));
     }
   };
 
   return (
-    <nav>
-      <ul className="pagination">
-
-        {
-          range.map(v => {
-            const isCurrent = v === props.currentPage;
-            const onClick = ev => {
-              ev.preventDefault();
-              setPage(v);
-            };
-            return (
-              <li
-                className={ isCurrent ? 'page-item active' : 'page-item' }
-                onClick={onClick}
-                key={v.toString()}>
-
-                <a className="page-link" href="">{v + 1}</a>
-
-              </li>
-            );
-          })
-        }
-
-      </ul>
-    </nav>
+    <div style={{width: 'fit-content', margin: 'auto', paddingTop: '20px'}}>
+      <a onClick={decrease} className="previous round">&#8249;</a>
+      <a onClick={increase} className="next round">&#8250;</a>
+    </div>
   );
 };
 

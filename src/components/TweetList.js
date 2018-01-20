@@ -18,19 +18,18 @@ const tweetList = props => {
   }
 
   return (
-    <div>
+    <div style={{width: 'fit-content', margin: 'auto'}}>
       {
         props.tweets.map(tweet => {
           return (
-            <TweetPreview tweet={tweet}/>
+            <TweetPreview tweet={tweet} key={tweet._id}/>
           );
         })
       }
 
       <ListPagination
         pager={props.pager}
-        tweetsCount={props.tweetsCount}
-        currentPage={props.currentPage} />
+        currentPage={props.currentPage}/>
     </div>
   );
 };

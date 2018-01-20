@@ -23,8 +23,8 @@ const requests = {
 const tweets = {
 	all:(page)=>
 	requests.get(`/tweets?page=${page ? page : 0}`),
-	byTag: (tag) =>
-    requests.get(`/tweets/search?query=${encode(tag)}`),
+	byTag: (tag, page) =>
+    requests.get(`/tweets/search?query=${encode(tag)}&page=${page ? page : 0}`),
 	random: ()=>
 	requests.get(`/tweets/random`)
 };

@@ -6,11 +6,7 @@ import {
   RANDOM_TWEET,
   SEARCH_TWEET,
   RESET,
-  CHANGE_TAB,
-  PROFILE_PAGE_LOADED,
-  PROFILE_PAGE_UNLOADED,
-  PROFILE_FAVORITES_PAGE_LOADED,
-  PROFILE_FAVORITES_PAGE_UNLOADED
+  CHANGE_TAB
 } from '../constants/actionTypes';
 
 export default (state = {}, action) => {
@@ -29,23 +25,30 @@ export default (state = {}, action) => {
     case SEARCH_TWEET:
     return {
       ...state,
-      tweets: action.payload.tweets
+      pager: action.pager,
+      tweets: action.payload.tweets,
+      currentPage: 0
     };
     case APPLY_TAG_FILTER:
       return {
         ...state,
+        pager: action.pager,
         tweets: action.payload.tweets,
         tag: action.tag,
-        currentPage: 1
+        currentPage: 0
       };
     case HOME_PAGE_LOADED:
       return {
         ...state,
+        currentPage: 0,
+        pager: action.pager,
         tweets: action.payload[1].tweets,
       };
     case RESET:
       return {
         ...state,
+        pager: action.pager,
+        currentPage: 0,
         tweets: action.payload.tweets,
       };
     case HOME_PAGE_UNLOADED:
@@ -53,19 +56,10 @@ export default (state = {}, action) => {
     case CHANGE_TAB:
       return {
         ...state,
+        pager: action.pager,
         tweets: action.payload.tweets,
         currentPage: 1
       };
-    case PROFILE_PAGE_LOADED:
-    case PROFILE_FAVORITES_PAGE_LOADED:
-      return {
-        ...state,
-        tweets: action.payload[1].tweets,
-        currentPage: 1
-      };
-    case PROFILE_PAGE_UNLOADED:
-    case PROFILE_FAVORITES_PAGE_UNLOADED:
-      return {};
     default:
       return state;
   }

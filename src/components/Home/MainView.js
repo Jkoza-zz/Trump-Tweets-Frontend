@@ -7,10 +7,10 @@ import { RESET } from '../../constants/actionTypes';
 const GlobalFeedTab = props => {
   const clickHandler = ev => {
     ev.preventDefault();
-    props.reset('All', agent.tweets.all('0'));
+    props.reset(agent.tweets.all, agent.tweets.all('0'));
   };
   return (
-    <li className="nav-item">
+    <li className="nav-item" style={{width: 'fit-content', margin: 'auto'}}>
       <a
         href=""
         className={ 'nav-link active' }
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 
 const MainView = props => {
   return (
-    <div className="col-md-9" style={{paddingLeft : '150px'}}>
+    <div className="col-md-8">
       <div className="feed-toggle">
         <ul className="nav nav-pills outline-active">
 
@@ -40,7 +40,9 @@ const MainView = props => {
       </div>
 
       <TweetList
-        tweets={props.tweets} />
+        tweets={props.tweets}
+        pager={props.pager} 
+        currentPage={props.currentPage}/>
     </div>
   );
 };

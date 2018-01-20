@@ -33,7 +33,7 @@ const Banner = ({ appName, randomClick, search, token }) => {
             </h1>
             <p>An engine to search Trump's Twitter. </p>
             <div style={{width: 'fit-content', margin: 'auto', paddingTop : '15px'}}>
-              <input type="text" placeholder="search..." style={{borderRadius: '25px', paddingLeft: '10px', height: '38', paddingRight: '10px'}} onChange={e => searchChange(e, e.target.value)} className="searcharticles" />
+              <input type="text" placeholder="search..." style={{borderRadius: '25px', paddingLeft: '10px', height: '38px', paddingRight: '10px'}} onChange={e => searchChange(e, e.target.value)} className="searcharticles" />
               <input type="submit" value="Search" onClick={e => handleSearch(e, query)} style={{marginLeft : '5px'}} className='btn btn-primary'/>
               <input type="submit" value="Random" onClick={handleRandom} className='btn' style={{marginLeft : '5px'}}/>
             </div>

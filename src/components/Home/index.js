@@ -35,7 +35,7 @@ class Home extends React.Component {
     const tab = this.props.token ? 'feed' : 'all';
     const tweetsPromise = agent.tweets.all;
 
-    this.props.onLoad(tab, tweetsPromise, Promise.all(['', tweetsPromise()]));
+    this.props.onLoad(tab, tweetsPromise, Promise.all([agent.tweets.byTag, tweetsPromise()]));
   }
 
   componentWillUnmount() {
@@ -51,7 +51,7 @@ class Home extends React.Component {
         <div className="container page">
           <div className="row">
             <MainView />
-            <div className="col-md-3">
+            <div className="col-md-4">
               <div className="sidebar">
 
                 <p>Popular Searches</p>
